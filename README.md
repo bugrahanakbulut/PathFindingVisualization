@@ -1,2 +1,2 @@
-# A* Visualization
-Visualization of search algorithms such as Dijkstra's Algorithm, A* Algorithm etc.
+# Path Finding Visualization
+Visualization of path finding algorithms such as Dijkstra's Algorithm, A* Algorithm etc.
