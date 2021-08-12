@@ -1,2 +1,2 @@
-# ShortestPathVisualization
-Visualization of shortest path algorithms such as Dijkstra's Algorithm, A* Algorithm.
+# Path Finding Visualization
+Visualization of path finding algorithms such as Dijkstra's Algorithm, A* Algorithm etc.
