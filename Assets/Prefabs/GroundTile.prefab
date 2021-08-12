@@ -1,20 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8216876492246294294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 793976058868845979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 414bede67af088b4a979da0d4eb06a8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _size: 1
-  _tileMat: {fileID: 2100000, guid: 9048bf779e59a5b4a869e816ea5f10e7, type: 2}
-  _visualTransform: {fileID: 793976057935586551}
 --- !u!114 &4735232595372912980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,6 +15,34 @@ MonoBehaviour:
   _selectedColor: {r: 1, g: 0.4669811, b: 0.4669811, a: 1}
   _discoveredColor: {r: 0.3820755, g: 0.8633021, b: 1, a: 1}
   _includedPathColor: {r: 0.67058825, g: 1, b: 0.5137255, a: 1}
+--- !u!114 &8216876492246294294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793976058868845979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 414bede67af088b4a979da0d4eb06a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: 1
+  _tileMat: {fileID: 2100000, guid: 9048bf779e59a5b4a869e816ea5f10e7, type: 2}
+  _visualTransform: {fileID: 793976057935586551}
+--- !u!114 &4431767227963950363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793976058868845979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c1cdf2a0d9f984e9e1517c1d516426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &7363186000921491048
 PrefabInstance:
   m_ObjectHideFlags: 0

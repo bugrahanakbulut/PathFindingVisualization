@@ -185,6 +185,20 @@ MonoBehaviour:
   _size: 1
   _tileMat: {fileID: 2100000, guid: 9048bf779e59a5b4a869e816ea5f10e7, type: 2}
   _visualTransform: {fileID: 139465370711804985}
+--- !u!114 &3468346151254807740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139465371921835349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a324d2f558ee49cab338421102f0a6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resetPos: {x: -30, y: 0, z: 0}
+  _tile: {fileID: 793824158}
 --- !u!114 &7628500572357315771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,6 +214,19 @@ MonoBehaviour:
   _selectedColor: {r: 1, g: 0, b: 0.083632946, a: 1}
   _discoveredColor: {r: 0, g: 1, b: 0.9693701, a: 1}
   _includedPathColor: {r: 0.29281795, g: 1, b: 0, a: 1}
+--- !u!114 &8182037271169723826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139465371921835349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c1cdf2a0d9f984e9e1517c1d516426, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &7837658251420851878
 PrefabInstance:
   m_ObjectHideFlags: 0

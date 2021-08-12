@@ -1,5 +1,6 @@
 using TileSystem;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace PathSystem
 {
@@ -15,5 +16,7 @@ namespace PathSystem
         public abstract EPathFinder GetPathFinderType();
         
         public abstract void FindPath(Tile[][] ground, Tile source, Tile destination);
+
+        public abstract void StopPathFinding();
     }
 }

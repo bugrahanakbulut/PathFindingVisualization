@@ -17,6 +17,19 @@ MonoBehaviour:
   _visualTransform: {fileID: 377557712916384724}
   _poolObject: {fileID: 377557711983190714}
   _boxCollider: {fileID: 9198079222285457736}
+--- !u!114 &7306945943852187448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 377557711983190712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40dbea989f79cf241ac5361c907b33e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolObject: {fileID: 377557711983190714}
 --- !u!1001 &7500416555297053003
 PrefabInstance:
   m_ObjectHideFlags: 0

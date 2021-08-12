@@ -7,6 +7,8 @@ namespace PathSystem
 {
     public class PathFinder_Dijkstra : PathFinder
     {
+        private IEnumerator _pathFindingRoutine;
+        
         private readonly Vector2Int[] _directions = new[]
         {
             new Vector2Int(0, 1),
@@ -22,7 +24,17 @@ namespace PathSystem
 
         public override void FindPath(Tile[][] ground, Tile source, Tile destination)
         {
-            StartCoroutine(PathFindingProgress(ground, source, destination));
+            _pathFindingRoutine = PathFindingProgress(ground, source, destination);
+            
+            StartCoroutine(_pathFindingRoutine);
+        }
+
+        public override void StopPathFinding()
+        {
+            if (_pathFindingRoutine != null)
+            {
+                StopCoroutine(_pathFindingRoutine);
+            }
         }
 
         private IEnumerator PathFindingProgress(Tile[][] ground, Tile source, Tile destination)

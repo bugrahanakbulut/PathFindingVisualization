@@ -11,6 +11,8 @@ public class PathFinder_AStar : PathFinder
     private int[][] _gCosts;
     private int[][] _hCosts;
     private Tile[][] _parents;
+
+    private IEnumerator _pathFindingRoutine;
     
     private readonly Vector2Int[] _directions = new[]
     {
@@ -27,7 +29,17 @@ public class PathFinder_AStar : PathFinder
 
     public override void FindPath(Tile[][] ground, Tile source, Tile destination)
     {
-        StartCoroutine(FindPathProgress(ground, source, destination));
+        _pathFindingRoutine = FindPathProgress(ground, source, destination);
+        
+        StartCoroutine(_pathFindingRoutine);
+    }
+
+    public override void StopPathFinding()
+    {
+        if (_pathFindingRoutine != null)
+        {
+            StopCoroutine(_pathFindingRoutine);
+        }
     }
 
     private void InitMatrices(int row, int col)

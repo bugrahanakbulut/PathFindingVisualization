@@ -71,9 +71,7 @@ namespace PathSystem
             string optionStr = _dropdown.options[_dropdown.value].text;
 
             EPathFinder pathFinder = _mappings.SingleOrDefault(i => i.Name.Equals(optionStr)).EPathFinder;
-
-            /*_pathFinder.FindPath(_ground.GroundTiles, _sourceTile, _destinationTile);*/
-
+            
             PathFinder pf = _PathFinders.SingleOrDefault(i => i.GetPathFinderType() == pathFinder);
 
             pf.FindPath(_ground.GroundTiles, _sourceTile, _destinationTile);
