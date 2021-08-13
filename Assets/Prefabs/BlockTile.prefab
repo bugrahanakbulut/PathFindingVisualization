@@ -85,6 +85,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlockTile
       objectReference: {fileID: 0}
+    - target: {fileID: 7866539106210648732, guid: a339ff1399b97944ca5a26d9b50993e3, type: 3}
+      propertyPath: _rootObject
+      value: 
+      objectReference: {fileID: 377557711983190715}
     - target: {fileID: 7866539106210648733, guid: a339ff1399b97944ca5a26d9b50993e3, type: 3}
       propertyPath: _duration
       value: 0.25
@@ -94,6 +98,11 @@ PrefabInstance:
 --- !u!1 &377557711983190712 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7866539104996375539, guid: a339ff1399b97944ca5a26d9b50993e3, type: 3}
+  m_PrefabInstance: {fileID: 7500416555297053003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &377557711983190715 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7866539104996375536, guid: a339ff1399b97944ca5a26d9b50993e3, type: 3}
   m_PrefabInstance: {fileID: 7500416555297053003}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &377557711983190714 stripped

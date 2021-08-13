@@ -8,21 +8,9 @@ namespace ResetSystem
     {
         [SerializeField] private KeyCode _targetKeyCode = KeyCode.R;
 
-        private Resetable[] _resetables;
 
-        private Resetable[] _Resetables
-        {
-            get
-            {
-                if (_resetables == null)
-                {
-                    _resetables = FindObjectsOfType<Resetable>();
-                }
+        private Resetable[] _Resetables => FindObjectsOfType<Resetable>();
 
-                return _resetables;
-            }
-        }
-        
         private void Awake()
         {
             InputManager.Instance.TryRegisterToInputListener<InputData_Key>(EInputEvent.KeyUp, OnPressedKey);
@@ -47,7 +35,10 @@ namespace ResetSystem
 
             foreach (Resetable resetable in _Resetables)
             {
-                resetable.Reset();
+                if (resetable.gameObject.activeInHierarchy)
+                {
+                    resetable.Reset();
+                }
             }
         }
     }

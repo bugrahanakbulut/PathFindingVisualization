@@ -8,6 +8,8 @@ namespace PathSystem
     public class PathFinder_Dijkstra : PathFinder
     {
         private IEnumerator _pathFindingRoutine;
+
+        private IEnumerator _traverseRoutine;
         
         private readonly Vector2Int[] _directions = new[]
         {
@@ -34,6 +36,11 @@ namespace PathSystem
             if (_pathFindingRoutine != null)
             {
                 StopCoroutine(_pathFindingRoutine);
+            }
+
+            if (_traverseRoutine != null)
+            {
+                StopCoroutine(_traverseRoutine);
             }
         }
 
@@ -85,8 +92,10 @@ namespace PathSystem
                     Debug.Log("Destination Tile Found.");
                     
                     destination.GetComponent<PathObject>().PathObjectSelected();
+
+                    _traverseRoutine = TraversePath(parents, destination);
                     
-                    StartCoroutine(TraversePath(parents, destination));
+                    StartCoroutine(_traverseRoutine);
                 
                     yield break;
                 }

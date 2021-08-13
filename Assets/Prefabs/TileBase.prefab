@@ -102,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8c15e3e5087c048b3b80d3db926927, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rootObject: {fileID: 7866539104996375536}
   _scaleTween: {fileID: 7866539106210648733}
   _poolObject: {fileID: 7866539104996375537}
 --- !u!114 &7866539106210648733

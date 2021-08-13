@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,20 +14,20 @@ public class ScaleTween : MonoBehaviour
 
     private IEnumerator _playRoutine;
 
-    public void Play()
+    public void Play(Action callback = null)
     {
         Kill();
 
-        _playRoutine = TweenProgress(_initialScale, _targetScale);
+        _playRoutine = TweenProgress(_initialScale, _targetScale, callback);
 
         StartCoroutine(_playRoutine);
     }
 
-    public void PlayReverse()
+    public void PlayReverse(Action callback = null)
     {
         Kill();
         
-        _playRoutine = TweenProgress(transform.localScale, _initialScale);
+        _playRoutine = TweenProgress(transform.localScale, _initialScale, callback);
 
         StartCoroutine(_playRoutine);
     }
@@ -39,7 +40,7 @@ public class ScaleTween : MonoBehaviour
         }
     }
 
-    private IEnumerator TweenProgress(Vector3 startVal, Vector3 finalVal)
+    private IEnumerator TweenProgress(Vector3 startVal, Vector3 finalVal, Action callback)
     {
         float timePassed = 0;
 
@@ -51,5 +52,7 @@ public class ScaleTween : MonoBehaviour
 
             yield return null;
         }
+        
+        callback?.Invoke();
     }
 }
