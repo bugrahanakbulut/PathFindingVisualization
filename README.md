@@ -14,7 +14,7 @@ Visualization of Dijkstra's Algorithm
 
 # TODOs
 
-* Adding more search algorigthms to visualize
+* Adding more search algorithms to visualize
 * Loading default block patterns (smt. like maze)
 * Some performance optimizations
 
