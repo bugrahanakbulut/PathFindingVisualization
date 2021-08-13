@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace BLUE.PoolingSystem
+namespace PoolingSystem
 {
     public abstract class PoolObject : MonoBehaviour
     {

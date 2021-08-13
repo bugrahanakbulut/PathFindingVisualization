@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace BLUE.PoolingSystem
+namespace PoolingSystem
 {
     public class PoolObjectFactory_MB : PoolObjectFactory
     {

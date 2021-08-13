@@ -1,4 +1,4 @@
-﻿namespace BLUE.PoolingSystem
+﻿namespace PoolingSystem
 {
     public class PoolObject_MB : PoolObject
     {

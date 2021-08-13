@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace BLUE.PoolingSystem
+namespace PoolingSystem
 {
     public class Pool_MB : Pool<PoolObject_MB>
     {

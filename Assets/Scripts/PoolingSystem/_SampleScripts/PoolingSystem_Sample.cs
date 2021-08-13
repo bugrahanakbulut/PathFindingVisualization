@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BLUE.PoolingSystem
+namespace PoolingSystem
 {
     public class PoolingSystem_Sample : MonoBehaviour
     {
