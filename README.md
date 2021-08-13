@@ -2,10 +2,12 @@
 Visualization of path finding algorithms such as Dijkstra's Algorithm, A* Algorithm etc.
 
 Visualization of A* Algorithm
+
 ![Alt Text](https://media.giphy.com/media/SHCgtSCjBMIUO2iNM8/giphy.gif)
 
 
 Visualization of Dijkstra's Algorithm
+
 ![Alt Text](https://media.giphy.com/media/5mlCDdpCfgyTUlDQFH/giphy.gif)
 
 # TODOs
