@@ -10,6 +10,8 @@ Visualization of Dijkstra's Algorithm
 
 ![Alt Text](https://media.giphy.com/media/5mlCDdpCfgyTUlDQFH/giphy.gif)
 
+[It is available as WebGL build. You can check it out.](https://github.com/facebook/react/wiki/Sites-Using-React)
+
 # TODOs
 
 * Adding more search algorigthms to visualize
