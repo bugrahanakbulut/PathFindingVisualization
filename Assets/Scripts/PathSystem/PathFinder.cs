@@ -7,8 +7,9 @@ namespace PathSystem
     public enum EPathFinder
     {
         None = 0,
-        Dijkstra = 1,
-        AStar = 2
+        BFS = 1,
+        AStar = 2,
+        Dijkstra = 3
     }
     
     public abstract class PathFinder : MonoBehaviour

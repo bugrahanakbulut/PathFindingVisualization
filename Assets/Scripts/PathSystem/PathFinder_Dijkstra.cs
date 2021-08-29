@@ -1,16 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using TileSystem;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace PathSystem
 {
     public class PathFinder_Dijkstra : PathFinder
     {
-        private IEnumerator _pathFindingRoutine;
-
-        private IEnumerator _traverseRoutine;
-        
         private readonly Vector2Int[] _directions = new[]
         {
             new Vector2Int(0, 1),
@@ -18,6 +17,9 @@ namespace PathSystem
             new Vector2Int(0, -1),
             new Vector2Int(1, 0)
         };
+
+        private IEnumerator _pathFindingRoutine = null;
+        private IEnumerator _pathVisualizationRoutine = null;
         
         public override EPathFinder GetPathFinderType()
         {
@@ -26,129 +28,157 @@ namespace PathSystem
 
         public override void FindPath(Tile[][] ground, Tile source, Tile destination)
         {
-            _pathFindingRoutine = PathFindingProgress(ground, source, destination);
-            
-            StartCoroutine(_pathFindingRoutine);
+            StartPathFindingRoutine(ground, source, destination);
         }
 
         public override void StopPathFinding()
+        {
+            StopPathFindingRoutine();
+        }
+
+        private void StartPathFindingRoutine(Tile[][] ground, Tile source, Tile destination)
+        {
+            StopPathFindingRoutine();
+
+            _pathFindingRoutine = PathFindingProgress(ground, source, destination);
+
+            StartCoroutine(_pathFindingRoutine);
+        }
+
+        private void StopPathFindingRoutine()
         {
             if (_pathFindingRoutine != null)
             {
                 StopCoroutine(_pathFindingRoutine);
             }
 
-            if (_traverseRoutine != null)
+            if (_pathVisualizationRoutine != null)
             {
-                StopCoroutine(_traverseRoutine);
+                StopCoroutine(_pathVisualizationRoutine);
             }
         }
 
         private IEnumerator PathFindingProgress(Tile[][] ground, Tile source, Tile destination)
         {
-            if (!source.CheckTilePositionIsValid() || !destination.CheckTilePositionIsValid())
-            {
-                yield break;
-            }
-            
-            int rowCount = ground.Length;
-            int colCount = ground[0].Length;
-            
-            bool[][] isVisited = new bool[rowCount][];
-            
-            Tile[][] parents = new Tile[rowCount][];
-            
-            for (int i = 0; i < rowCount; i++)
-            {
-                isVisited[i] = new bool[colCount];
-                parents[i] = new Tile[colCount];
-            }
-            
-            parents[source.TilePos.x][source.TilePos.y] = null;
-            
-            Queue<Tile> tileQueue = new Queue<Tile>();
-            
-            tileQueue.Enqueue(source);
+            bool[,] isVisited = new bool[ground.Length, ground[0].Length];
+            Tile[,] parents = new Tile[ground.Length, ground[0].Length];
+            int[,] costs = new int[ground.Length, ground[0].Length];
 
-            while (tileQueue.Count != 0)
+            for (int i = 0; i < ground.Length; i++)
             {
-                Tile curTile = tileQueue.Dequeue();
-                PathObject pathObj = curTile.GetComponent<PathObject>();
-                Vector2Int curPos = curTile.TilePos;
-                
-                if (isVisited[curPos.x][curPos.y])
+                for (int j = 0; j < ground[0].Length; j++)
                 {
-                    continue;
+                    costs[i, j] = Int32.MaxValue;
                 }
-                
-                isVisited[curPos.x][curPos.y] = true;
-                
-                pathObj.PathObjectSelected();
-                
-                yield return null;
-                
-                if (curTile.TilePos == destination.TilePos)
-                {
-                    Debug.Log("Destination Tile Found.");
-                    
-                    destination.GetComponent<PathObject>().PathObjectSelected();
+            }
 
-                    _traverseRoutine = TraversePath(parents, destination);
-                    
-                    StartCoroutine(_traverseRoutine);
+            List<Vector2Int> tilesToVisit = new List<Vector2Int>();
+            
+            tilesToVisit.Add(source.TilePos);
+            costs[source.TilePos.x, source.TilePos.y] = 0;
+            
+            while (tilesToVisit.Count != 0)
+            {
+                Tile curTile = GetMinimumCostTile(ground, tilesToVisit, costs);
+                PathObject pathObject = curTile.GetComponent<PathObject>();
+
+                tilesToVisit.Remove(curTile.TilePos);
                 
-                    yield break;
+                pathObject.PathObjectSelected();
+                
+                if (curTile.TilePos.Equals(destination.TilePos))
+                {
+                    Debug.Log("Path Found via Dijkstra.");
+
+                    Tile tmp = destination;
+                    
+                    tmp.GetComponent<PathObject>().PathObjectIncludedPath();
+
+                    while (tmp != null)
+                    {
+                        tmp = parents[tmp.TilePos.x, tmp.TilePos.y];
+                        
+                        if (tmp != null)
+                        {
+                            tmp.GetComponent<PathObject>().PathObjectIncludedPath();
+                        }
+
+                        yield return null;
+                    }
+                    
+                    source.GetComponent<PathObject>().PathObjectIncludedPath();
+                    
+                    break;
                 }
+
+                isVisited[curTile.TilePos.x, curTile.TilePos.y] = true;
 
                 foreach (Vector2Int direction in _directions)
                 {
-                    if (CheckPositionIsValid(isVisited, ground, curPos.x + direction.x, curPos.y + direction.y))
-                    {
-                        tileQueue.Enqueue(ground[curPos.x + direction.x][curPos.y + direction.y]);
+                    bool nextPosValidation = 
+                        CheckPositionIsValid(ground, curTile.TilePos.x + direction.x, curTile.TilePos.y + direction.y);
 
-                        parents[curPos.x + direction.x][curPos.y + direction.y] = curTile;
+                    int curCost = costs[curTile.TilePos.x, curTile.TilePos.y];
+
+                    if (nextPosValidation)
+                    {
+                        Vector2Int nextPos = new Vector2Int(curTile.TilePos.x + direction.x,
+                            curTile.TilePos.y + direction.y);
+
+                        if (costs[nextPos.x, nextPos.y] > curCost + 1)
+                        {
+                            costs[nextPos.x, nextPos.y] = curCost + 1;
+                            parents[nextPos.x, nextPos.y] = curTile;
+
+                            if (!isVisited[nextPos.x, nextPos.y])
+                            {
+                                tilesToVisit.Add(nextPos);
+                            }
+                        }
                     }
                 }
                 
-                pathObj.PathObjectDiscovered();
+                pathObject.PathObjectDiscovered();
+
+                yield return null;
             }
         }
 
-        private bool CheckPositionIsValid(bool[][] isVisited, Tile[][] ground, int row, int col)
+        private Tile GetMinimumCostTile(Tile[][] ground, List<Vector2Int> tiles, int[,] costs)
         {
-            bool isRowValid = row >= 0 && row < ground.Length;
-            bool isColValid = col >= 0 && col < ground[0].Length;
+            Tile minCostTile = null;
+            int minCost = Int32.MaxValue;
 
-            if (!isRowValid || !isColValid)
+            foreach (Vector2Int tilePos in tiles)
+            {
+                int cost = costs[tilePos.x, tilePos.y];
+                
+                if (minCost > cost)
+                {
+                    minCost = cost;
+                    minCostTile = ground[tilePos.x][tilePos.y];
+                }
+            }
+
+            return minCostTile;
+        }
+
+        private bool CheckPositionIsValid(Tile[][] ground, int row, int col)
+        {
+            bool isRowValid = row < ground.Length && row >= 0;
+            bool isColValid = col < ground[0].Length && col >= 0;
+
+            if (!(isRowValid && isColValid))
             {
                 return false;
             }
-
-            if (isVisited[row][col])
-            {
-                return false;
-            }
-
+            
             if (ground[row][col] is BlockTile)
             {
                 return false;
             }
-
+            
             return true;
-        }
-
-        private IEnumerator TraversePath(Tile[][] parents, Tile destination)
-        {
-            Tile tmp = destination;
-
-            while (tmp != null)
-            {
-                tmp.GetComponent<PathObject>().PathObjectIncludedPath();
-                
-                tmp = parents[tmp.TilePos.x][tmp.TilePos.y];
-
-                yield return new WaitForSeconds(0.05f);
-            }
         }
     }
 }

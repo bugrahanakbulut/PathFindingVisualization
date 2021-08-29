@@ -213,9 +213,11 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Dijkstra
+    - m_Text: BFS
       m_Image: {fileID: 0}
     - m_Text: A*
+      m_Image: {fileID: 0}
+    - m_Text: Dijkstra
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -408,7 +410,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Dijkstra
+  m_Text: BFS
 --- !u!222 &298078460
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -429,6 +431,7 @@ GameObject:
   - component: {fileID: 302463120}
   - component: {fileID: 302463119}
   - component: {fileID: 302463118}
+  - component: {fileID: 302463122}
   - component: {fileID: 302463121}
   m_Layer: 0
   m_Name: PathDrawRelated
@@ -472,7 +475,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 302463116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66de3bd47aa541f8837094cd89b3feb0, type: 3}
+  m_Script: {fileID: 11500000, guid: d9635478e4d63144db419cfd111f55d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &302463120
@@ -493,10 +496,12 @@ MonoBehaviour:
   _destinationTile: {fileID: 1530163490}
   _dropdown: {fileID: 14562719}
   _mappings:
-  - _name: Dijkstra
+  - _name: BFS
     _ePathFinder: 1
   - _name: A*
     _ePathFinder: 2
+  - _name: Dijkstra
+    _ePathFinder: 3
 --- !u!114 &302463121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,6 +517,19 @@ MonoBehaviour:
   _pathFinders:
   - {fileID: 302463118}
   - {fileID: 302463119}
+  - {fileID: 302463122}
+--- !u!114 &302463122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302463116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2683e54482e4434693bb5390c56bafa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &461775963
 GameObject:
   m_ObjectHideFlags: 0
