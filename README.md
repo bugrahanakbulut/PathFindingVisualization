@@ -6,7 +6,7 @@ Visualization of A* Algorithm
 ![Alt Text](https://media.giphy.com/media/SHCgtSCjBMIUO2iNM8/giphy.gif)
 
 
-Visualization of Dijkstra's Algorithm
+Visualization of BFS
 
 ![Alt Text](https://media.giphy.com/media/5mlCDdpCfgyTUlDQFH/giphy.gif)
 
